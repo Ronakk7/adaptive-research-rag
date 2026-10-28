@@ -32,6 +32,15 @@ class LLMEndpoint:
     def label(self) -> str:
         return f"{self.provider}:{self.model}"
 
+    def __repr__(self) -> str:
+        masked = "sk-***" if self.api_key else None
+        return (
+            f"LLMEndpoint(provider={self.provider!r}, "
+            f"model={self.model!r}, "
+            f"api_key={masked}, "
+            f"base_url={self.base_url!r})"
+        )
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
